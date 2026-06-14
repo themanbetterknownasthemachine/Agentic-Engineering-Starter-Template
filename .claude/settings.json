@@ -1,0 +1,46 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dbtf build*)",
+      "Bash(dbtf test*)",
+      "Bash(uv run pytest*)",
+      "Bash(uv run ruff*)",
+      "Bash(uv run mypy*)",
+      "Bash(python eval/*)",
+      "Bash(bash scripts/*)",
+      "Read",
+      "Edit",
+      "Write",
+      "Grep",
+      "Glob"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(**/*.p8)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Bash(*DROP *)",
+      "Bash(*DELETE *)",
+      "Bash(*TRUNCATE *)",
+      "Bash(git push*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Edit|Write",
+        "hooks": [
+          { "type": "command", "command": ".claude/hooks/protect-files.sh" }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          { "type": "command", "command": ".claude/hooks/validate-changes.sh" }
+        ]
+      }
+    ]
+  }
+}

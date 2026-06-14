@@ -1,0 +1,27 @@
+# Secrets & Credentials
+.env
+.env.*
+!.env.example
+*.p8
+*.pem
+*.key
+
+# Persoenliche Claude-Konfiguration (nicht committen)
+.claude/settings.local.json
+CLAUDE.local.md
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# dbt
+target/
+dbt_packages/
+logs/
+
+# OS / Editor
+.DS_Store

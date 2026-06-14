@@ -1,0 +1,22 @@
+[project]
+name = "bida-project"
+version = "0.1.0"
+description = "Pistor BIDA data/ML project"
+requires-python = ">=3.12"
+dependencies = [
+  "pandas",
+  "numpy",
+  "pyarrow",
+  "scikit-learn",
+  "statsmodels",
+]
+
+[dependency-groups]
+dev = ["ruff", "mypy", "pytest"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
