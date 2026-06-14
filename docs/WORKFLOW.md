@@ -10,7 +10,7 @@ Tägliche Prognose des Wareneingangsvolumens (Paletten pro Tag) je Standort, dam
 
 ## 1. Repo anlegen
 
-Auf GitHub "Use this template", neues Repo (z.B. `wareneingang-forecast`), dann klonen und in VS Code öffnen:
+Das Starter-Template liegt unter `https://github.com/themanbetterknownasthemachine/Agentic-Engineering-Starter-Template`. Dort oben rechts auf "Use this template" klicken. GitHub legt damit ein neues, eigenes Repo an (z.B. `wareneingang-forecast`). Dieses neue Repo klonst du, nicht das Template selbst:
 
 ```bash
 git clone https://github.com/<org>/wareneingang-forecast.git
@@ -18,7 +18,7 @@ cd wareneingang-forecast
 code .
 ```
 
-Du startest mit der fertigen Struktur: CLAUDE.md, `.claude/` mit Rules, Skills, Subagents und Hooks sowie `.mcp.json` sind schon da.
+`<org>` ist dein GitHub-Account (oder die Organisation) und `wareneingang-forecast` dein neuer Projektname. Du startest mit der fertigen Struktur: CLAUDE.md, `.claude/` mit Rules, Skills, Subagents und Hooks sowie `.mcp.json` sind schon da.
 
 ## 2. Kontext anpassen
 
