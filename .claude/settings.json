@@ -16,6 +16,9 @@
       "Grep",
       "Glob"
     ],
+    "ask": [
+      "Edit(**/eval/eval_*.py)"
+    ],
     "deny": [
       "Read(./.env)",
       "Read(**/*.p8)",

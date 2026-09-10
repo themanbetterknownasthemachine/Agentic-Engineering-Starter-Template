@@ -16,7 +16,9 @@ Jedes `eval/eval_<thema>.py` haelt sich an diese Regeln:
 4. **Klare Ausgabe.** Bei FAIL steht in der Ausgabe, *welche* Pruefung
    *warum* fehlgeschlagen ist (Metrik, Wert, Schwelle).
 5. **Wird vor der Implementierung gebaut** und danach nicht stillschweigend
-   aufgeweicht, um rot auf gruen zu drehen.
+   aufgeweicht, um rot auf gruen zu drehen. Technisch abgesichert: jede Aenderung
+   an `eval/eval_*.py` loest in Claude Code eine Rueckfrage aus
+   (`.claude/settings.json`, `permissions.ask`), auch im Auto-Accept-Modus.
 
 ## Verwendung pro Projekt
 
@@ -33,6 +35,7 @@ Jedes `eval/eval_<thema>.py` haelt sich an diese Regeln:
 |---------------|------------------------------|--------------------------------------------|
 | Forecast      | `eval_forecast.py`           | MAPE/Bias/negative Werte                   |
 | ML allgemein  | `eval_baseline_beat.py`      | Modell schlaegt Baseline + Quality-Bar     |
+| Abstimmung    | `eval_abstimmung.py`         | Ziel = Quelle je Schluessel + Sollwerte    |
 
 - `examples/eval_forecast.py` - Forecast-Verifier (MAPE/Bias/negative Werte).
   Zeilen mit `y_true == 0` werden fuer die MAPE ausgeschlossen; bei vielen
@@ -40,3 +43,9 @@ Jedes `eval/eval_<thema>.py` haelt sich an diese Regeln:
 - `examples/eval_baseline_beat.py` - generischer ML-Verifier: PASS nur, wenn das
   Modell die Baseline schlaegt UND die Quality-Bar erfuellt (WAPE, robust gegen
   `y_true == 0`). Liest Baseline- und Modell-Vorhersagen aus einer results-JSON.
+- `examples/eval_abstimmung.py` - fachlicher Abgleich fuer Marts und Kennzahlen:
+  keine doppelten Schluessel, Vollstaendigkeit, Ziel = Quelle je Schluessel und
+  Kennzahl, plus mindestens ein vom Fachbereich bestaetigter Sollwert. Faengt
+  "Tests gruen, Zahl falsch" (Join-Explosion, falscher Filter, falsche Periode).
+  Die Sollwerte stehen im Verifier selbst und sind damit durch Regel 5 geschuetzt.
+  Fuer DWH-Projekte dasselbe Muster als dbt-Singular-Test unter `tests/`.
